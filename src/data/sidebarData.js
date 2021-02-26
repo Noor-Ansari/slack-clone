@@ -33,11 +33,3 @@ export const sidebarItems = [
 
 ]
 
-export const channels = [
-    {
-        text : "# Channel 1"
-    },
-    {
-        text : "# Channel 2"
-    }
-]
