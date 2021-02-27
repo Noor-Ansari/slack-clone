@@ -6,17 +6,25 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import styled from "styled-components";
 import Login from "./components/Login/Login";
-import db from "./firebase";
+import db, {auth} from "./firebase";
 
 function App() {
  const [rooms, setRooms] = useState([]);
-
+ const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  
   const getRooms = () => {
     db.collection("rooms").onSnapshot((snap)=>{
       setRooms(snap.docs.map((doc)=>{
         return {id : doc.id, name : doc.data().name}
       }))
     })}
+
+  const signOut = () => {
+    auth.signOut().then(() => {
+      localStorage.clear()
+      setUser(null)
+    })
+  }
 
     useEffect(() => {
       getRooms();
@@ -25,20 +33,24 @@ function App() {
   return (
     <div className="app">
 <Router>
+  {
+    !user ?  <Login setUser={setUser}/>
+    :(
       <Container>
-        <Header/>
+        <Header user={user} signOut={signOut}/>
         <Main>
           <Sidebar rooms={rooms} />
           <Switch>
-            <Route exact path="/room">
-              <Chat/>
+            <Route path="/room/:channelId">
+              <Chat user={user} />
             </Route>
-            <Route exact path="/">
-              <Login/>
+            <Route path="/">
+              Go and create a new channel 
             </Route>
           </Switch>
         </Main>
       </Container>
+      )}
       </Router>
     </div>
   );
@@ -50,7 +62,7 @@ const Container = styled.div`
   height : 100vh;
   width : 100%;
   display : grid;
-  grid-template-rows : 50px auto;
+  grid-template-rows : 50px minmax(0, 1fr);
 `
 
 const Main = styled.div`

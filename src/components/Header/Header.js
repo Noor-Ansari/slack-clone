@@ -2,9 +2,8 @@ import React from 'react'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import styled from "styled-components";
-import image from "../../assets/user.png";
 
-function Header() {
+function Header({user, signOut}) {
     return (
         <Container>
             <Element1>
@@ -15,9 +14,9 @@ function Header() {
                 <HelpOutlineIcon/>
             </Element1>
             <Element2>
-                <p>Noor</p>
-                <ImageContainer>
-                    <img src={image} alt="" />
+                <p>{user.name}</p>
+                <ImageContainer onClick={signOut}>
+                    <img src={user.photo ? user.photo : "https://suryahospitals.com/jaipur/wp-content/uploads/sites/3/2020/07/user-dummy-200x200-1.png"} alt="" />
                 </ImageContainer>
             </Element2>
         </Container>
@@ -56,6 +55,7 @@ const Element2 = styled.div`
 const ImageContainer = styled.div`
     height : 30px;
     width : 30px;
+    cursor : pointer;
     img {
         width : 100%;
         border : 1px solid white;
