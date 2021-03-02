@@ -34,7 +34,7 @@ function Sidebar({rooms}) {
         {sidebarItems.map((item, idx) => (
           <MainChannelItem key={idx}>
             {item.icon}
-            {item.text}
+            <p>{item.text}</p>
           </MainChannelItem>
         ))}
       </MainChannels>
@@ -92,18 +92,42 @@ const WorkSpaceIcon = styled.div`
 const MainChannels = styled.div`
   color: rgb(188, 170, 188);
   padding: 10px 0;
+  display : flex;
+  flex-direction : column;
+  flex-wrap : wrap;
 `;
 
 const MainChannelItem = styled.div`
-  display: grid;
-  grid-template-columns: 15% auto;
-  padding: 5px 20px;
-  height: 30px;
+  display : flex;
+  padding: 5px 15px;
+  height: 40px;
+  font-size : 16px;
   cursor: pointer;
+  p {
+    margin-left : 10px;
+  }
   :hover {
     background: #350d36;
   }
+  @media (max-width: 650px) {
+    height : 50px;
+    p {
+      font-size : 14px;
+    }
+  }
+  @media (max-width: 380px) {
+    p {
+      font-size : 12px;
+    }
+  }
+  @media (max-width: 250px) {
+    justify-content : center;
+    p {
+      display : none;
+    }
+  }
 `;
+
 
 const ChannelContainer = styled.div`
   color: rgb(188, 170, 188);
@@ -117,17 +141,35 @@ const NewChannelContainer = styled.div`
   height: 28px;
   padding-left: 20px;
   padding-right: 12px;
+  @media (max-width: 380px) {
+    justify-content : space-evenly;
+    padding : 12px;
+  }
 `;
 
-const ChannelsList = styled.div``;
+const ChannelsList = styled.div`
+display : flex;
+flex-direction : column;
+flex-wrap : wrap;
+`;
 
 const Channel = styled.div`
-  line-height: 30px;
+  line-height: 40px;
   cursor: pointer;
   padding-left: 20px;
   display: flex;
+  flex-wrap : wrap;
   align-items: center;
   :hover {
     background: #350d36;
+  }
+  @media (max-width: 650px) {
+    font-size : 14px;
+   }
+  @media (max-width: 380px) {
+   font-size : 12px;
+  }
+  @media (max-width: 250px) {
+    display : none;
   }
 `;

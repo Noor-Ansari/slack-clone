@@ -62,10 +62,13 @@ const Container = styled.div`
   height : 100vh;
   width : 100%;
   display : grid;
-  grid-template-rows : 50px minmax(0, 1fr);
+  grid-template-rows : 70px minmax(0, 1fr);
 `
 
 const Main = styled.div`
   display : grid;
-  grid-template-columns : 20% auto;
+  grid-template-columns : 30% auto;
+  @media (max-width: 650px) {
+    grid-template-columns : 40% auto;
+  }
 `

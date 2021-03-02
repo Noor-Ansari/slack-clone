@@ -20,8 +20,7 @@ function Header({user, signOut}) {
                 </ImageContainer>
             </Element2>
         </Container>
-           
-           )
+        )
 }
 
 export default Header;
@@ -29,27 +28,49 @@ export default Header;
 const Container = styled.div`
     background : white;
     display : flex;
+    flex-wrap : wrap;
     align-items : center;
     justify-content : center;
     position : relative;
-    padding : 20px;
     background : #2b092b;
     color : white;
+    width : 100%;
+    @media (max-width: 650px) {
+        justify-content : space-between;
+        padding : 15px;
+      }
+      @media (max-width: 370px) {
+        padding : 5px;
+      }
 `
 
 const Element1 = styled.div`
     display : flex;
     align-items : center;
+    justify-content : center;
+    flex-wrap : wrap;
 `
 
 const Element2 = styled.div`
     display : flex;
     align-items : center;
     position : absolute;
-    right : 30px;
+    flex-wrap : wrap;
+    right : 40px;
     p {
-        margin : 0 20px;
+        margin : 0 16px;
     }
+    @media (max-width: 650px) {
+        p {
+            margin : 0 10px;
+            font-size : 12px;
+        }
+      }
+      @media (max-width: 380px) {
+        p {
+            display : none;
+        }
+      }
 `
 
 const ImageContainer = styled.div`
@@ -60,13 +81,18 @@ const ImageContainer = styled.div`
         width : 100%;
         border : 1px solid white;
         border-radius : 4px;
-        marging-left : 20px;
+        marging-left : 10px;
     }
+    @media (max-width: 370px) {
+        img {
+            margin-left : 5px;
+            margin-right : 0;
+        }
 `
 
 const SearchContainer = styled.div`
     margin : 0 20px;
-    width : 500px;
+    width : 35vw;
     input {
         width : 100%;
         padding : 10px;
